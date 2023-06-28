@@ -1,5 +1,4 @@
 import { useState } from "react"
-import logo from '../image/logo.png'
 
 const product = [
     {pno : 1, pname : 'Americano', price : 7000, imgFile : 'd01.jpg'},
@@ -10,6 +9,15 @@ const product = [
 
 
 const Kiosk = () => {
+
+    // prob4 상세정보
+    const [imgItem, setDetail] = useState([])
+
+    const handleClickDedail = (product) => {
+        console.log(product)
+
+        setDetail([...items, {...product}])
+    }
 
     // 2-1 카트에 담기 (useState)
     const [items,setItems] = useState([])
@@ -75,31 +83,41 @@ const Kiosk = () => {
         if(!arr || arr.length === 0){
             return 0
         }
-        
-        let sum = 0;
-        for(const ele of arr){
-            sum += (ele.price * ele.qty)
-        }
-        return sum
+        // let sum = 0;
+        // for(const ele of arr){
+        //     sum += (ele.price * ele.qty)
+        // }
 
+        // prob3 reduce
+        const sum = arr.reduce((sum, ele) => sum + ele.price*ele.qty,0)
+        return sum
     }
+
+
+
+
+
 
     return (
         <div className="w-full h-screen bg-gray-100 flex " >
             <div className="w-3/5 bg-red-500 border-red-200">
                 <div className="text-4xl font-extrabold ">Products</div>
 
-                <ul className="flex text-center float-left">
+                <ul className="flex text-center">
                     {product.map( p => 
                     <li
                     key = {p.pno}
                     className="text-2xl m-3 p-3 bg-neutral-50 w-60"
-                    onClick={() => {handleClickBuy(p)}}
                     >
-                        <img src ={require(`../image/${p.imgFile}`)} className=" w-56 h-56"></img>
+                        <img src ={require(`../image/${p.imgFile}`)} className=" w-56 h-56"
+                        onClick={() => {handleClickDedail(p)}}
+                        >
+                        </img>
                     {p.pno}번<br/>  {p.pname}<br/>  {p.price}
                     <br />
-                    <button className="border-2 m-2 rounded-sm border-blue-300 ">BUY</button>
+                    <button className="border-2 m-2 rounded-sm border-blue-300 "
+                    onClick={() => {handleClickBuy(p)}}
+                    >BUY</button>
                     
                     </li>)}
                 </ul>
