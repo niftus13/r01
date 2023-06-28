@@ -1,11 +1,16 @@
+import { useState } from "react"
+
 const Counter = () => {
 
-    let num = 1;
+    // 랜더링이 일어나는지 확인
+    console.log("render.............")
+    
+    //hooks
+    const [num,setNum] = useState(1)
 
     const handleClick = (amount) => {
-        console.log("click")
-        num += amount
-        console.log(num)
+        setNum(num + amount)
+        //console.log("click", num)
     }
     
 
