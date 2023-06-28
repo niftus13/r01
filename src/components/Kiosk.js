@@ -56,11 +56,11 @@ const Kiosk = () => {
             
             // qty가 0이 되어 사라질때 
             if(target.qty === 1){
-                setItems(items.filter(ele => ele.pno !== pno))
+                setItems(items.filter(ele => ele.pno !== pno) )
             }else{
                 // qty !== 1
                 target.qty -= 1
-                setItems([items])
+                setItems([...items])
             }
         }
         
