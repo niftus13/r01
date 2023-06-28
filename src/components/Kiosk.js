@@ -68,6 +68,22 @@ const Kiosk = () => {
 
     }
 
+    // option2-1 전체 price값 구하기
+    // 반환값이 있으면 표현식으로 가능
+    const getTotal = (arr) => {
+        // option2-2 reduce
+        if(!arr || arr.length === 0){
+            return 0
+        }
+        
+        let sum = 0;
+        for(const ele of arr){
+            sum += (ele.price * ele.qty)
+        }
+        return sum
+
+    }
+
     return (
         <div className="w-full h-{100vh} bg-slate-400 flex">
             <div className="w-2/3 bg-red-300">
@@ -108,6 +124,10 @@ const Kiosk = () => {
                         </div>
                     </li>)}
                 </ul>
+                {/* option2-3 총합 화면 */}
+                <div className=" bg-amber-400 text-5xl float-right">
+                        TOTAL  {getTotal(items)}
+                </div>
             </div>
         </div>
       );
