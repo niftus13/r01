@@ -39,6 +39,35 @@ const Kiosk = () => {
        
     }
 
+    // option1-1 파라미터 값이 있으면 람다식으로
+    const handleClickQty = (pno, amount) =>{
+
+        console.log("pno: ",pno,"amount : ",amount)
+        // option1-3 타겟찾기
+        const target = items.filter(item => item.pno === pno)[0]
+        console.log("target",target)
+
+        // option1-4 increase
+        if(amount === 1){
+            target.qty += 1
+            setItems([...items])
+        }else{
+        // option1-5 decrease
+            
+            // qty가 0이 되어 사라질때 
+            if(target.qty === 1){
+                setItems(items.filter(ele => ele.pno !== pno))
+            }else{
+                // qty !== 1
+                target.qty -= 1
+                setItems([items])
+            }
+        }
+        
+
+
+    }
+
     return (
         <div className="w-full h-{100vh} bg-slate-400 flex">
             <div className="w-2/3 bg-red-300">
@@ -63,14 +92,19 @@ const Kiosk = () => {
                     <li key = {idx} className="border-2">
                         {/*2_1_1 옵션 - 버튼 */}
                         <div className="flex text-3xl text-white m-3 p-3">
-                            <div>{item.pno}</div>
-                            <div>{item.pname}</div>
+                            <div>{item.pno}-</div>
+                            <div>{item.pname}-</div>
                             <div>{item.price}</div>
                         </div>
                         <div className="flex justify-center text-2xl">
-                            <button className="rounded-lg bg-emerald-300 p-3 m-3">+</button>
+                            <button className="rounded-lg bg-emerald-300 p-3 m-3"
+                            // option1-2 클릭시 값이 오르거나 내리게 onclick
+                            onClick = {()=> handleClickQty(item.pno,1)}
+                            >+</button>
                             <p className="m-2 p-2 text-red-600">{item.qty}</p>
-                            <button className="rounded-lg bg-emerald-300 p-3 m-3" >-</button>
+                            <button className="rounded-lg bg-emerald-300 p-3 m-3"
+                            onClick = {()=> handleClickQty(item.pno,-1)}
+                            >-</button>
                         </div>
                     </li>)}
                 </ul>
