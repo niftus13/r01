@@ -1,11 +1,11 @@
 import { useState } from "react"
-
+import logo from '../image/logo.png'
 
 const product = [
-    {pno : 1, pname : 'Americano', price : 7000},
-    {pno : 2, pname : 'Latte', price : 6000},
-    {pno : 3, pname : 'greenTea', price : 8000},
-    {pno : 4, pname : 'milk Tea', price : 9000},
+    {pno : 1, pname : 'Americano', price : 7000, imgFile : 'd01.jpg'},
+    {pno : 2, pname : 'Latte', price : 6000, imgFile : 'd02.jpg'},
+    {pno : 3, pname : 'greenTea', price : 8000, imgFile : 'd03.jpg'},
+    {pno : 4, pname : 'milk Tea', price : 9000, imgFile : 'd04.jpg'},
   ]
 
 
@@ -85,47 +85,50 @@ const Kiosk = () => {
     }
 
     return (
-        <div className="w-full h-{100vh} bg-slate-400 flex">
-            <div className="w-2/3 bg-red-300">
-                <div className="text-4xl font-extrabold">Products</div>
+        <div className="w-full h-screen bg-gray-100 flex " >
+            <div className="w-3/5 bg-red-500 border-red-200">
+                <div className="text-4xl font-extrabold ">Products</div>
 
-                <ul>
+                <ul className="flex text-center float-left">
                     {product.map( p => 
                     <li
                     key = {p.pno}
-                    className="text-2xl underline m-3 p-3 bg-yellow-300"
+                    className="text-2xl m-3 p-3 bg-neutral-50 w-60"
                     onClick={() => {handleClickBuy(p)}}
                     >
-                    {p.pno} - {p.pname} - {p.price}
-                    <button className="border-2 m-2 rounded-sm border-blue-300">BUY</button>
+                        <img src ={require(`../image/${p.imgFile}`)} className=" w-56 h-56"></img>
+                    {p.pno}번<br/>  {p.pname}<br/>  {p.price}
+                    <br />
+                    <button className="border-2 m-2 rounded-sm border-blue-300 ">BUY</button>
+                    
                     </li>)}
                 </ul>
             </div>
             <div className="w-1/3 ">
-                <div className="text-4xl font-extrabold">Cart</div>
+                <div className="text-4xl font-extrabold ">Cart</div>
                 <ul>
                     {items.map( (item, idx) => 
                     <li key = {idx} className="border-2">
                         {/*2_1_1 옵션 - 버튼 */}
-                        <div className="flex text-3xl text-white m-3 p-3">
+                        <div className="flex text-3xl text-gray-800 m-3 p-3">
                             <div>{item.pno}-</div>
                             <div>{item.pname}-</div>
                             <div>{item.price}</div>
                         </div>
-                        <div className="flex justify-center text-2xl">
-                            <button className="rounded-lg bg-emerald-300 p-3 m-3"
+                        <div className="flex justify-center text-2xl ">
+                            <button className="rounded-lg bg-red-100 50 p-3 m-3"
                             // option1-2 클릭시 값이 오르거나 내리게 onclick
                             onClick = {()=> handleClickQty(item.pno,1)}
                             >+</button>
                             <p className="m-2 p-2 text-red-600">{item.qty}</p>
-                            <button className="rounded-lg bg-emerald-300 p-3 m-3"
+                            <button className="rounded-lg bg-red-100 p-3 m-3"
                             onClick = {()=> handleClickQty(item.pno,-1)}
                             >-</button>
                         </div>
                     </li>)}
                 </ul>
                 {/* option2-3 총합 화면 */}
-                <div className=" bg-amber-400 text-5xl float-right">
+                <div className=" bg-red-100 text-5xl float-right relative bottom-0">
                         TOTAL  {getTotal(items)}
                 </div>
             </div>
