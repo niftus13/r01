@@ -59,7 +59,20 @@ const Kiosk = () => {
             <div className="w-1/3 ">
                 <div className="text-4xl font-extrabold">Cart</div>
                 <ul>
-                    {items.map( (item, idx) => <li key = {idx}>{item.pno} - {item.pname} - {item.qty}</li>)}
+                    {items.map( (item, idx) => 
+                    <li key = {idx} className="border-2">
+                        {/*2_1_1 옵션 - 버튼 */}
+                        <div className="flex text-3xl text-white m-3 p-3">
+                            <div>{item.pno}</div>
+                            <div>{item.pname}</div>
+                            <div>{item.price}</div>
+                        </div>
+                        <div className="flex justify-center text-2xl">
+                            <button className="rounded-lg bg-emerald-300 p-3 m-3">+</button>
+                            <p className="m-2 p-2 text-red-600">{item.qty}</p>
+                            <button className="rounded-lg bg-emerald-300 p-3 m-3" >-</button>
+                        </div>
+                    </li>)}
                 </ul>
             </div>
         </div>
