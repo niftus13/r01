@@ -11,20 +11,32 @@ const product = [
 
 const Kiosk = () => {
 
-    // 카트에 담기 (useState)
+    // 2-1 카트에 담기 (useState)
     const [items,setItems] = useState([])
 
     const handleClickBuy = (product) =>{
         console.log(product)
 
-        //filter (ele : 배열의 요소) 결과 = 배열
+        // 2-2 filter (ele : 배열의 요소) 결과 = 배열
         const result = items.filter( ele => ele.pno === product.pno )
 
         console.log(result)
 
+        // 필터의 배열의 length가 0 or 1
+        //2-3 if 배열의 크기가 0이면 새상품, 1이면 있는 상품 qty += 1
+        if(result.length === 0){
 
-        // 새 배열 만들기 (기존의 배열에 새 상품 추가 -> 카트쪽에 넣어줘야 함)
-        setItems([...items, {...product, qty:1}])
+             //2-4 새 배열 만들기 (기존의 배열에 새 상품 추가 -> 카트쪽에 넣어줘야 함)
+            setItems([...items, {...product, qty:1}])
+            return
+        }
+        const cartItem = result[0]
+        cartItem.qty += 1
+        
+        //2-5 리랜더링
+        setItems([...items,])
+
+       
     }
 
     return (
