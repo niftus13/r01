@@ -11,13 +11,14 @@ const product = [
 const Kiosk = () => {
 
     // prob4 상세정보
-    const [imgItem, setDetail] = useState([])
+    const [current, setCurrent] = useState(null)
 
     const handleClickDedail = (product) => {
         console.log(product)
 
-        setDetail([...items, {...product}])
+        setCurrent(product)
     }
+
 
     // 2-1 카트에 담기 (useState)
     const [items,setItems] = useState([])
@@ -145,6 +146,19 @@ const Kiosk = () => {
                         </div>
                     </li>)}
                 </ul>
+                <div className=" w-2/5 absolute left-0 bottom-8 text-4xl flex ">
+                    <div>view</div>
+                    <img src ={require(`../image/${current.imgFile}`)} className=" w-56 h-56 float-left"
+                    ></img>
+                    {current ? 
+                    <div>{current.pno}
+                    {current.pname}
+                    {current.price}
+                    </div>
+                    :
+                    <></>
+                }
+                </div>
                 {/* option2-3 총합 화면 */}
                 <div className=" bg-red-100 text-5xl float-right relative bottom-0">
                         TOTAL  {getTotal(items)}
