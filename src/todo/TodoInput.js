@@ -1,18 +1,23 @@
 import { useState } from "react";
 
 const initState = {title : '', content: ''}
+let tno = 1
 
-const TodoInput = () => {
+// 4 addTodo 함수 받아오기
+const TodoInput = ({addTodo}) => {
 
-    const [obj, setObj] = useState(initState)
+    const [obj, setObj] = useState({...initState})
 
     const handleChange = (e) => {
         obj[e.target.name] = e.target.value
         setObj({...obj})
     }
-
-    const handleShow = () => {
+    // ADD 이름 바꾸기 
+    // 5 tno 값 index로 전달, input tag clear
+    const handleAdd = () => {
         console.log(obj)
+        addTodo({...obj, tno: tno++})
+        setObj({...initState})
     }
 
     const handleClear = () => {
@@ -43,7 +48,8 @@ const TodoInput = () => {
             />
         </div>
         <div>
-            <button onClick={handleShow}>SHOW</button>
+            {/* ADD 이름 바꾸기 */}
+            <button onClick={handleAdd}>ADD</button>
             <button onClick={handleClear}>CLEAR</button>
         </div>
         </>
