@@ -1,4 +1,5 @@
 import Kiosk from "./components/Kiosk";
+import ZKiosk from "./components/zKiosk";
 import ZCounter from "./components/zcounter";
 
 
@@ -8,7 +9,7 @@ function App() {
     //   <Kiosk></Kiosk>
     // </div>
     <div>
-      <ZCounter/>
+      <ZKiosk/>
     </div>
   );
 }
