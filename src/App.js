@@ -1,6 +1,8 @@
 import Kiosk from "./components/Kiosk";
 import ZKiosk from "./components/zKiosk";
 import ZCounter from "./components/zcounter";
+import SampleLayout from "./layout/SampleLayout";
+import TemplatePage from "./layout/TemplatePage";
 
 
 function App() {
@@ -9,7 +11,12 @@ function App() {
     //   <Kiosk></Kiosk>
     // </div>
     <div>
-      <ZKiosk/>
+      <TemplatePage>
+        <div className="text-6xl text-red-800">LOGO HEADER</div>
+        <ZKiosk/>
+        <div className="text-6xl text-red-800">LOGO FOOTER</div>
+      </TemplatePage>
+ 
     </div>
   );
 }
