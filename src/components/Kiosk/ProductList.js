@@ -1,37 +1,33 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-
+import { useEffect,  useState } from "react";
 
 const ProductList = ({requestViewProduct}) => {
 
-    const [obj,setObj] = useState([])
-    console.log(obj)
-    
-    // useEffect
-    useEffect(()=>{
+    const [obj, setObj] = useState([]);
 
-        axios.get('http://localhost/products').then(res =>{
-            console.log("effect : ",res.data)
+    console.log(obj)
+
+    useEffect(() => {
+
+        axios.get('http://localhost/products').then(res => {
+            console.log("effect inside" + res.data)
             setObj(res.data)
         })
 
-    },[])
+    }, [])
 
-    if(obj.length === 0 ){
-        return(
-            <div className="text-4xl">Loding.............</div>
+    if(obj.length === 0) {
+        return (
+            <div className="text-4xl">Loading..............</div>
         )
     }
 
-
-
     return ( 
         <ul>
-            {obj.map(p => 
-            <li key={p.id}
-            onClick={() => requestViewProduct(p.id)}>
-                {p.id} - {p.pname} = {p.price}
-            </li>)}
+            {obj.map(p =>
+                <li key={p.id} onClick={() => requestViewProduct(p.id)}>
+                    {p.id} - {p.pname} - {p.price}
+                </li>)}
         </ul>
      );
 }

@@ -1,12 +1,9 @@
-import Kiosk from "./components/Kiosk";
-
-
+import Todo1 from "./components/todo1";
 
 function App() {
   return (
-
     <div>
-      <Kiosk></Kiosk>
+      <Todo1></Todo1>
     </div>
   );
 }
