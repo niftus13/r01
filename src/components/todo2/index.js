@@ -9,7 +9,8 @@ const Todo2 = () => {
     const [cmd, setCmd] = useState("list")
 
     // 5.1 changeView
-    const changeView = (value) => {
+    
+    const changeView = (value,tno) => {
         setCmd(value)
     }
 
@@ -22,9 +23,17 @@ const Todo2 = () => {
         }
     }
 
+    // 조회하러가기
+
     return ( 
         <>
+        <div className="w-full h-24 bg-blue-700 flex">
+            <div className="border-2 text-white w-32 " onClick={() => changeView("list")}>LIST</div>
+            <div className="border-2 text-white w-32 " onClick={() => changeView("input")}>INPUT</div>
+        </div>
+        <div>
         {getView()}
+        </div>
         </>
      );
 }
